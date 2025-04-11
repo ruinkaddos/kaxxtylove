@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ты мой мир 🤍</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: white;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+      animation: starScroll 200s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes starScroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 -10000px; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 5% auto;
+      max-width: 800px;
+      border-radius: 30px;
+      box-shadow: 0 0 25px #111;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: white;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    .image {
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #444;
+    }
+
+    .timer {
+      margin-top: 30px;
+      font-size: 1.5rem;
+    }
+
+    .love-text {
+      margin-top: 30px;
+      font-size: 2rem;
+      color: white;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hidden-message {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      display: none;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div class="container">
+    <h1>Ты мой мир 🤍</h1>
+    <div class="quote">С тобой с <b>11 апреля 2025, 19:23</b></div>
+    <div class="image">
+      <img src="https://i.ytimg.com/vi/wdVMf3sP6lU/maxresdefault.jpg" alt="любовь"/>
+    </div>
+
+    <div class="timer" id="timer">Загрузка таймера...</div>
+
+    <div class="love-text">Я тебя люблю 💖</div>
+
+    <button class="button" onclick="showMessage()">Нажми, если скучаешь</button>
+    <div class="hidden-message" id="hiddenMessage">💘 Я всегда с тобой 💘</div>
+
+    <audio controls autoplay loop>
+      <source src="https://dl.sndup.net/4m9q/%D0%9A%D0%B8%D1%88%D0%BB%D0%B0%D0%BA%20-%20%D0%AD%D0%B9.mp3" type="audio/mpeg" />
+      Твой браузер не поддерживает музыку :(
+    </audio>
+  </div>
+
+  <script>
+    const startDate = new Date("2025-04-11T19:23:00");
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      let seconds = Math.floor(diff / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+
+      let years = Math.floor(days / 365);
+      days = days % 365;
+
+      let months = Math.floor(days / 30);
+      days = days % 30;
+
+      hours = hours % 24;
+      minutes = minutes % 60;
+      seconds = seconds % 60;
+
+      document.getElementById("timer").innerHTML =
+        `Мы вместе уже: <br>
+        <b>${years}</b> лет, 
+        <b>${months}</b> месяцев, 
+        <b>${days}</b> дней, 
+        <b>${hours}</b> часов, 
+        <b>${minutes}</b> минут, 
+        <b>${seconds}</b> секунд 🤍`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    function showMessage() {
+      const messageElement = document.getElementById("hiddenMessage");
+      if (messageElement.style.display === "none" || messageElement.style.display === "") {
+        messageElement.style.display = "block";
+      } else {
+        messageElement.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
